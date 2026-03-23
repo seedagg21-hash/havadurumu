@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kedi Hava Durumu</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="manifest" href="/manifest.json">
+</head>
+<body class="theme-bulutlu">
+  <div class="app-container">
+    
+    <!-- Arama Çubuğu -->
+    <div class="search-container glass-panel">
+      <input type="text" id="search-input" placeholder="Şehir ara (Örn: İstanbul, London)..." autocomplete="off">
+      <button id="search-btn" class="icon-btn" aria-label="Ara">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <button id="location-btn" class="icon-btn" aria-label="Konumum">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+      </button>
+    </div>
+
+    <!-- Ana Hava Durumu Bilgisi (Hero) -->
+    <div class="hero-section glass-panel">
+      <div class="hero-left">
+        <div class="location-name" id="location-name">Yükleniyor...</div>
+        <div class="current-date" id="current-date">--</div>
+        <div class="temp-row">
+          <span class="temp-huge" id="current-temp">--</span>
+          <span class="temp-unit">°C</span>
+        </div>
+        <div class="condition-text" id="current-desc">Durum</div>
+      </div>
+      <div class="hero-right">
+        <img id="cat-gif" src="/static/cat-normal.gif" alt="Hava Durumu Kedisi">
+      </div>
+    </div>
+
+    <!-- Detaylar (Nem, Rüzgar, Basınç) -->
+    <div class="details-grid">
+      <div class="detail-card glass-panel">
+        <div class="detail-label">Nem</div>
+        <div class="detail-val" id="hum-val">%--</div>
+      </div>
+      <div class="detail-card glass-panel">
+        <div class="detail-label">Rüzgar</div>
+        <div class="detail-val" id="wind-val">-- km/s</div>
+      </div>
+      <div class="detail-card glass-panel">
+        <div class="detail-label">Basınç</div>
+        <div class="detail-val" id="pressure-val">-- mb</div>
+      </div>
+    </div>
+
+    <!-- Tuti'nin Tavsiyesi 🐾 -->
+    <div class="advice-panel glass-panel" style="margin-top: 5px; margin-bottom: 5px;">
+      <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">Tuti'nin Tavsiyesi 🐾</h3>
+      <p id="cat-advice-text" style="font-size: 1rem; line-height: 1.5; font-weight: 500; opacity: 0.95;">Tavsiye yükleniyor...</p>
+    </div>
+
+    <!-- Saatlik Tahmin -->
+    <div class="section-container">
+      <h2 class="section-title">Saatlik Tahmin</h2>
+      <div class="hourly-scroll" id="hourly-scroll">
+        <!-- Javascript tarafından doldurulacak -->
+      </div>
+    </div>
+
+    <!-- 3 Günlük Tahmin -->
+    <div class="section-container">
+      <h2 class="section-title">3 Günlük Tahmin</h2>
+      <div class="daily-list glass-panel" id="daily-list">
+        <!-- Javascript tarafından doldurulacak -->
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+/* Ana Değişkenler ve Sıfırlama */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  --text-main: #2b2b2b;
+  --text-muted: #555555;
+  --transition-speed: 0.5s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+  transition: background-color var(--transition-speed) ease;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* GIF Renklerine Duyarlı Temalar */
+.theme-gunesli { background-color: #f9eddb; } /* Sunny */
+.theme-bulutlu { background-color: #fcbfe4; } /* Cloudy - Normal */
+.theme-yagmurlu { background-color: #6ec9fd; } /* Umbrella */
+.theme-karli   { background-color: #d5f0cb; } /* Winter */
+.theme-gece    { background-color: #caa5ec; } /* Sleep */
+
+/* Uygulama Ana Konteyner */
+.app-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Glassmorphism Genel Sınıfı */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+  padding: 20px;
+}
+
+/* Arama Çubuğu */
+.search-container {
+  display: flex;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 30px;
+  align-items: center;
+}
+
+#search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  font-family: inherit;
+  font-weight: 500;
+}
+#search-input::placeholder {
+  color: rgba(43, 43, 43, 0.6);
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  color: var(--text-main);
+  transition: transform 0.2s;
+}
+.icon-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Ana Hava Durumu Bilgisi (Hero) */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 25px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+/* Hero Hover Efekti (Hafifçe Belirginleştirme) */
+.hero-section:hover {
+  transform: translateY(-2px);
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 2;
+}
+
+.location-name {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+  letter-spacing: -0.5px;
+}
+
+.current-date {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.temp-row {
+  display: flex;
+  align-items: flex-start;
+  margin: 12px 0;
+}
+
+.temp-huge {
+  font-size: 4.8rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+.temp-unit {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 6px;
+  margin-left: 2px;
+}
+
+.condition-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.hero-right img {
+  width: 150px;
+  height: auto;
+  /* multiply blend mode sayesinde GIF'in arkaplanı saydamlaşır pürüzsüz görünür */
+  mix-blend-mode: multiply;
+  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Detay Kartları (Nem, Rüzgar...) */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.detail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px;
+  text-align: center;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+/* Alt Bölüm Başlıkları */
+.section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-left: 8px;
+  color: var(--text-main);
+  opacity: 0.9;
+}
+
+/* Saatlik Tahmin Kaydırmalı Kutu */
+.hourly-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+.hourly-scroll::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.hour-card {
+  flex: 0 0 auto;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s, border-color 0.3s;
+  border-radius: 20px;
+}
+.hour-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.6);
+}
+.hour-card.active {
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+.hour-time {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.hour-icon {
+  font-size: 1.7rem;
+}
+.hour-temp {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+/* Günlük Tahmin Liste */
+.daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.day-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.day-row:hover {
+  background: rgba(255,255,255,0.5);
+  transform: translateX(4px);
+}
+
+.day-name {
+  flex: 1;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.day-icon {
+  flex: 0 0 50px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.day-temps {
+  flex: 1;
+  text-align: right;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.day-temps .min {
+  color: var(--text-muted);
+  margin-left: 10px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Mobil için optimizasyon */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 15px 10px;
+    gap: 15px;
+  }
+  .hero-right img { width: 120px; }
+  .temp-huge { font-size: 4rem; }
+  .details-grid { gap: 10px; }
+  .detail-card { padding: 12px 6px; }
+  .detail-val { font-size: 1.05rem; }
+}
